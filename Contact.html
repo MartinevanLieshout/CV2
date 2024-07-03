@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae Martine van Lieshout</title>
+    <link rel="stylesheet" href="style.css">
+   
+    <script>
+        function toggleForm() {
+            var formType = document.getElementById("formType").value;
+            var vraagForm = document.getElementById("vraagForm");
+            var offerteForm = document.getElementById("offerteForm");
+            var tipForm = document.getElementById("tipForm");
+
+            vraagForm.classList.add("hidden");
+            offerteForm.classList.add("hidden");
+            tipForm.classList.add("hidden");
+
+            if (formType === "vraag") {
+                vraagForm.classList.remove("hidden");
+            } else if (formType === "offerte") {
+                offerteForm.classList.remove("hidden");
+            } else if (formType === "tip") {
+                tipForm.classList.remove("hidden");
+            }
+
+            checkForm();
+        }
+
+        function checkForm() {
+            var formType = document.getElementById("formType").value;
+            var isValid = false;
+
+            if (formType === "vraag") {
+                isValid = document.getElementById("vraagNaam").value && document.getElementById("vraagEmail").value && document.getElementById("vraagBericht").value;
+            } else if (formType === "offerte") {
+                isValid = document.getElementById("offerteNaam").value && document.getElementById("offerteEmail").value && document.getElementById("offerteBericht").value;
+            } else if (formType === "tip") {
+                isValid = document.getElementById("tipNaam").value && document.getElementById("tipBericht").value;
+            }
+
+            var submitBtn = document.getElementById("submitBtn");
+            if (isValid) {
+                submitBtn.classList.add("active");
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.classList.remove("active");
+                submitBtn.disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header-title">
+        <div class="header-content-center">
+            <div class="logo">
+                <img src="pasfoto cv.png" alt="Logo" class="logo-img">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="CV.html">CV</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Contactformulier</h1>
+        <form action="https://formspree.io/f/mrgnnnky" method="post" oninput="checkForm()">
+            <div class="form-group">
+                <label for="formType">Kies een optie:</label>
+                <select id="formType" name="formType" onchange="toggleForm()" required>
+                    <option value="">-- Selecteer een optie --</option>
+                    <option value="vraag">Stel een vraag</option>
+                    <option value="offerte">Vraag een offerte aan</option>
+                    <option value="tip">Geef een tip</option>
+                </select>
+            </div>
+
+            <!-- Vraag Formulier -->
+            <div id="vraagForm" class="hidden">
+                <div class="form-group">
+                    <label for="vraagNaam">Naam:</label>
+                    <input type="text" id="vraagNaam" name="vraagNaam">
+                </div>
+                <div class="form-group">
+                    <label for="vraagEmail">E-mailadres:</label>
+                    <input type="email" id="vraagEmail" name="vraagEmail">
+                </div>
+                <div class="form-group">
+                    <label for="vraagBericht">Uw vraag:</label>
+                    <textarea id="vraagBericht" name="vraagBericht" rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Offerte Formulier -->
+            <div id="offerteForm" class="hidden">
+                <div class="form-group">
+                    <label for="offerteNaam">Naam:</label>
+                    <input type="text" id="offerteNaam" name="offerteNaam" required>
+                </div>
+                <div class="form-group">
+                    <label for="offerteEmail">E-mailadres:</label>
+                    <input type="email" id="offerteEmail" name="offerteEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="offerteBericht">Aanvraag omschrijving:</label>
+                    <textarea id="offerteBericht" name="offerteBericht" rows="4" required></textarea>
+                </div>
+            </div>
+
+            <!-- Tip Formulier -->
+            <div id="tipForm" class="hidden">
+                <div class="form-group">
+                    <label for="tipNaam">Naam:</label>
+                    <input type="text" id="tipNaam" name="tipNaam">
+                </div>
+                <div class="form-group">
+                    <label for="tipBericht">Uw tip:</label>
+                    <textarea id="tipBericht" name="tipBericht" rows="4"></textarea>
+                </div>
+            </div>
+
+            <input type="submit" value="Verzenden" id="submitBtn" class="submit-btn" disabled>
+            <!-- Knop voor "Bel me" -->
+            <button type="button" onclick="window.location.href='tel:0649086883'">Bel me</button>
+            <!-- Knop voor "Email me" -->
+            <button type="button" onclick="window.location.href='mailto:mvanlieshout@me.com'">Email me</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Mijn Website. Alle rechten voorbehouden.</p>
+            <p>Contact: <a href="mailto:mvanlieshout@me.com">Mailen</a></p>
+        </div>
+    </footer>
+</body>
+</html>
